@@ -4,25 +4,17 @@ import (
 	"../../../config"
 	"../model"
 	"github.com/gin-gonic/gin"
-	"github.com/jinzhu/gorm"
 )
 
-type GetProduct struct {
-	gorm.Model
-	Name    string
-	Price   int
-	TaxName string
-}
-
-func GetAllProduct() ([]GetProduct, error) {
-	var mod []GetProduct
+func GetAllProduct() ([]model.GetProduct, error) {
+	var mod []model.GetProduct
 
 	db, err := config.GetConn()
 
 	if err != nil {
 		return nil, err
 	}
-	res := db.Table("products").Select("products.name, products.price, taxes.tax_name").Joins("left join taxes on products.tax_id = taxes.id").Scan(&mod)
+	res := db.Table("products").Select("products.name, products.price, taxes.tax_name, taxes.refundable").Joins("left join taxes on products.tax_id = taxes.id").Scan(&mod)
 
 	return mod, res.Error
 }

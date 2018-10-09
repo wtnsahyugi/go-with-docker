@@ -21,7 +21,7 @@ func MigrateTax() error {
 }
 
 func seedTax(db *gorm.DB) {
-	db.Create(&model.Tax{TaxName: "food"})
-	db.Create(&model.Tax{TaxName: "tobacco"})
-	db.Create(&model.Tax{TaxName: "entertainment"})
+	db.Create(&model.Tax{TaxName: "food", Refundable: true})
+	db.Create(&model.Tax{TaxName: "tobacco", Refundable: false})
+	db.Create(&model.Tax{TaxName: "entertainment", Refundable: false})
 }

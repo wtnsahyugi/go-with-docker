@@ -46,7 +46,7 @@ func main() {
 		router.GET("/product", test.ProductHandler)
 		router.POST("/product/post", test.CreateProductHandler)
 		router.GET("/refresh_token", authMiddleware.RefreshHandler)
-		// router.GET("/hello/customers", hello.CustomerHandler)
+		router.GET("/taxcalculation/:id", test.TaxCalculationHandler)
 		// router.POST("/hello/customer/post", hello.CreateCustomerHandler)
 		// router.POST("/hello/customer/upload", hello.UploadCustomerHandler)
 	}
