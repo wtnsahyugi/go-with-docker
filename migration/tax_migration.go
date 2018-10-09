@@ -5,5 +5,5 @@ import (
 )
 
 func TaxMigration() {
-	db.MigrateProduct()
+	db.MigrateTax()
 }

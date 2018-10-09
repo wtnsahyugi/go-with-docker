@@ -4,6 +4,5 @@ import "github.com/jinzhu/gorm"
 
 type Tax struct {
 	gorm.Model
-	TaxCode  uint `form:"TaxCode" json:"TaxCode" binding:"required"`
-	TaxName uint `form:"TaxName" json:"TaxName" binding:"required"`
+	TaxName string `form:"TaxName" json:"TaxName" binding:"required,max=20,min=1"`
 }

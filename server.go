@@ -3,10 +3,11 @@ package main
 import (
 	"fmt"
 	"log"
-    "net/http"
+	"net/http"
+
 	"./jwt"
 
-	migrateproduct "./migration"
+	migration "./migration"
 	test "./pack/test"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -26,7 +27,8 @@ func main() {
 	setup := viper.Get("setup")
 
 	if setup.(string) == "true" {
-		migrateproduct.ProductMigration()
+		migration.ProductMigration()
+		migration.TaxMigration()
 	}
 
 	r := gin.New()
@@ -49,10 +51,10 @@ func main() {
 		// router.POST("/hello/customer/upload", hello.UploadCustomerHandler)
 	}
 
-    fmt.Printf(port.(string))
-    if err := http.ListenAndServe(":8080", r); err != nil {
-        log.Fatal(err)
-    }
+	fmt.Printf(port.(string))
+	if err := http.ListenAndServe(":8080", r); err != nil {
+		log.Fatal(err)
+	}
 	//http.ListenAndServe(":"+port.(string), r)
 
 }

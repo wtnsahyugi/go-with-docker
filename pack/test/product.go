@@ -20,6 +20,7 @@ func ProductHandler(c *gin.Context) {
 }
 
 func CreateProductHandler(c *gin.Context) {
+
 	items, err := repo.CreateProduct(c)
 
 	if err != nil {
@@ -32,5 +33,4 @@ func CreateProductHandler(c *gin.Context) {
 
 	}
 	core.SendResponse(c, 200, "succesfully insert data", items)
-
 }
