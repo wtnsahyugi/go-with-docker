@@ -13,9 +13,10 @@ type Product struct {
 type GetProduct struct {
 	gorm.Model
 	Name       string
-	Price      int
+	Price      float32
 	TaxID      string
 	TaxName    string
 	Refundable bool
-	Tax        int
+	Tax        float32
+	Amount     float32
 }
